@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://s4d.virtual:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4d.virtual:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4d.virtual:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4d.virtual:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4d.virtual:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="Z08_FLIGHT_FREESTYLE_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Z08_FLIGHT_FREESTYLEType" sap:label="Flights" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Bookid"/>
+                    <PropertyRef Name="Carrid"/>
+                    <PropertyRef Name="Connid"/>
+                    <PropertyRef Name="Fldate"/>
+                </Key>
+                <Property Name="Bookid" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="NonNegative" sap:label="Booking number"/>
+                <Property Name="Carrid" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Airline" sap:quickinfo="Airline Code"/>
+                <Property Name="Connid" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Connection Number" sap:quickinfo="Flight Connection Number"/>
+                <Property Name="Fldate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date" sap:label="Flight Date" sap:quickinfo="Flight date"/>
+                <Property Name="Customid" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Customer Number"/>
+                <Property Name="Custtype" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="B/P customer" sap:quickinfo="Customer type"/>
+                <Property Name="Smoker" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Smoker"/>
+                <Property Name="Luggweight" Type="Edm.Decimal" Precision="8" Scale="4" sap:unit="Wunit" sap:label="Luggage Weight" sap:quickinfo="Weight of Luggage"/>
+                <Property Name="Wunit" Type="Edm.String" MaxLength="3" sap:label="Unit of Measurement" sap:quickinfo="Weight Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="Invoice" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Invoice flag"/>
+                <Property Name="Class" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Class" sap:quickinfo="Flight Class"/>
+                <Property Name="Forcuram" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="Forcurkey" sap:label="Amount" sap:quickinfo="Booking price in foreign currency (dependent on location)"/>
+                <Property Name="Forcurkey" Type="Edm.String" MaxLength="5" sap:label="Paymnt currency" sap:quickinfo="Payment currency" sap:semantics="currency-code"/>
+                <Property Name="Loccuram" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="Loccurkey" sap:label="Amount (loc.currncy)" sap:quickinfo="Price of booking in local currency of airline"/>
+                <Property Name="Loccurkey" Type="Edm.String" MaxLength="5" sap:label="Airline Currency" sap:quickinfo="Local currency of airline" sap:semantics="currency-code"/>
+                <Property Name="OrderDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Posting date" sap:quickinfo="Booking Date"/>
+                <Property Name="Counter" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Sales office" sap:quickinfo="Number of sales office"/>
+                <Property Name="Agencynum" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Agency No." sap:quickinfo="Travel Agency Number"/>
+                <Property Name="Cancelled" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Cancelation flag"/>
+                <Property Name="Reserved" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Reserved" sap:quickinfo="Reservation flag"/>
+                <Property Name="Passname" Type="Edm.String" MaxLength="25" sap:label="Passenger Name" sap:quickinfo="Name of the Passenger"/>
+                <Property Name="Passform" Type="Edm.String" MaxLength="15" sap:label="Form of address"/>
+                <Property Name="Passbirth" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="DOB of Passenger" sap:quickinfo="Date of Birth of a Passenger"/>
+                <Property Name="Price" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="Currency" sap:label="Airfare"/>
+                <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:label="Airline Currency" sap:quickinfo="Local currency of airline" sap:semantics="currency-code"/>
+                <Property Name="Planetype" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Plane Type" sap:quickinfo="Aircraft Type"/>
+                <Property Name="Seatsmax" Type="Edm.Int32" sap:label="Max. capacity econ." sap:quickinfo="Maximum capacity in economy class"/>
+                <Property Name="Seatsocc" Type="Edm.Int32" sap:label="Occupied econ." sap:quickinfo="Occupied seats in economy class"/>
+                <Property Name="Paymentsum" Type="Edm.Decimal" Precision="18" Scale="3" sap:unit="Currency" sap:label="Booking total" sap:quickinfo="Total of current bookings"/>
+                <Property Name="SeatsmaxB" Type="Edm.Int32" sap:label="Max. capacity bus." sap:quickinfo="Maximum capacity in business class"/>
+                <Property Name="SeatsoccB" Type="Edm.Int32" sap:label="Occupied bus." sap:quickinfo="Occupied seats in business class"/>
+                <Property Name="SeatsmaxF" Type="Edm.Int32" sap:label="Max. capacity 1st" sap:quickinfo="Maximum capacity in first class"/>
+                <Property Name="SeatsoccF" Type="Edm.Int32" sap:label="Occupied 1st" sap:quickinfo="Occupied seats in first class"/>
+                <Property Name="Auslastung" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityContainer Name="Z08_FLIGHT_FREESTYLE_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="Z08_FLIGHT_FREESTYLE" EntityType="Z08_FLIGHT_FREESTYLE_CDS.Z08_FLIGHT_FREESTYLEType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <Annotations Target="Z08_FLIGHT_FREESTYLE_CDS.Z08_FLIGHT_FREESTYLE_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://s4d.virtual:443/sap/opu/odata/sap/Z08_FLIGHT_FREESTYLE_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://s4d.virtual:443/sap/opu/odata/sap/Z08_FLIGHT_FREESTYLE_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
